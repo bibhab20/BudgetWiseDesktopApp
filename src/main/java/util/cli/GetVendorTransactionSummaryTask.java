@@ -34,7 +34,6 @@ public class GetVendorTransactionSummaryTask implements CliTask {
     SimpleDateFormat dateFormat;
     Date startDate, endDate;
     AppConfig appConfig;
-    VendorConfig vendor;
     String vendorName;
     TransactionUtil transactionUtil;
 
@@ -68,6 +67,9 @@ public class GetVendorTransactionSummaryTask implements CliTask {
     @Override
     public CliSummary run() {
         List<Transaction> result = this.processorService.filterByVendorNameAndDate(startDate, endDate, vendorName);
+        if (result.size() == 0) {
+            return new CliSummary(CliSummary.Status.FAIL, "The transactions found for the given vendor");
+        }
         CsvTable table;
         try {
             table = transactionUtil.getCsv(result, new ArrayList<>());
@@ -86,46 +88,10 @@ public class GetVendorTransactionSummaryTask implements CliTask {
     }
 
     @Override
-    public Map<String, String> getParameterMap() {
-        return this.parameterMap;
-    }
-
-    @Override
     public List<TaskParameter> getParameters() {
         return this.parameters;
     }
 
-    @Override
-    public CliSummary validateParameterMap() {
-        if (!checkForNullAndEmpty()) {
-            return new CliSummary(CliSummary.Status.FAIL, "One or more parameter is null or empty");
-        }
-        String startDate = parameterMap.get(START_DATE);
-        String endDate = parameterMap.get(END_DATE);
-        String vendorName = parameterMap.get(VENDOR_NAME);
-        List<VendorConfig> vendorConfigs = vendorConfigSupplier.get();
-        boolean isFound = false;
-        for (VendorConfig vendorConfig: vendorConfigs) {
-            if (vendorConfig.getName().equalsIgnoreCase(vendorName)) {
-                isFound = true;
-                this.vendor = vendorConfig;
-                break;
-            }
-        }
-        if (!isFound) {
-            return new CliSummary(CliSummary.Status.FAIL, "Vendor not found");
-        }
-        try {
-            this.startDate = dateFormat.parse(startDate);
-            this.endDate = dateFormat.parse(endDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return new CliSummary(CliSummary.Status.FAIL, "Wrong Date format");
-        }
-
-        return new CliSummary(CliSummary.Status.PASS, "Successful");
-
-    }
 
     @Override
     public CliSummary validateParameters() {

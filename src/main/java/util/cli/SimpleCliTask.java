@@ -33,22 +33,10 @@ public class SimpleCliTask implements CliTask{
     }
 
     @Override
-    public Map<String, String> getParameterMap() {
-        return this.parameterMap;
-    }
-
-    @Override
     public List<TaskParameter> getParameters() {
         return null;
     }
 
-    @Override
-    public CliSummary validateParameterMap() {
-        if (this.parameterMap.size() != 2) {
-            return new CliSummary(CliSummary.Status.FAIL, String.format("Wrong numbers of parameters. Expecting 2 and is : %d", parameterMap.size()));
-        }
-        return new CliSummary(CliSummary.Status.PASS, "Validation passed");
-    }
 
     @Override
     public CliSummary validateParameters() {

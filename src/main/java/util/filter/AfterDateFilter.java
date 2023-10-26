@@ -17,6 +17,6 @@ public class AfterDateFilter implements TransactionFilter{
         if (afterDate == null) {
             return true;
         }
-        return transaction.getTransactionDate().after(afterDate);
+        return transaction.getTransactionDate().after(afterDate) || transaction.getTransactionDate().equals(afterDate);
     }
 }

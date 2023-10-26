@@ -18,6 +18,6 @@ public class BeforeDateFilter implements TransactionFilter{
         if (beforeDate == null) {
             return true;
         }
-        return transaction.getTransactionDate().before(beforeDate);
+        return transaction.getTransactionDate().before(beforeDate) || transaction.getTransactionDate().equals(beforeDate);
     }
 }

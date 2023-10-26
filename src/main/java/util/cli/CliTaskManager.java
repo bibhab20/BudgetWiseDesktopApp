@@ -36,17 +36,12 @@ public class CliTaskManager {
         return this.currentTask;
     }
 
-    public Map<String, String> getParameterMap() {
-        return this.currentTask.getParameterMap();
-    }
+
 
     public List<TaskParameter> getParameters() {
         return this.currentTask.getParameters();
     }
 
-    public CliSummary validateParameterMap(Map<String, String> parameterMap) {
-        return this.currentTask.validateParameterMap();
-    }
 
     public CliSummary validateParameters() {
         return this.currentTask.validateParameters();
