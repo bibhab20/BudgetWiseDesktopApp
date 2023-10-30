@@ -64,19 +64,24 @@ public class CLIController {
         //Map<String, String> parameterMap = taskManager.getParameterMap();
         List<TaskParameter> parameters = taskManager.getParameters();
         //read and store parameters
-        System.out.println("Now enter the parameters for the selected task");
+        if (parameters != null && parameters.size() != 0) {
+            System.out.println("Now enter the parameters for the selected task");
+            for (TaskParameter parameter: parameters) {
+                System.out.println(String.format("Enter %s: | Default value: %s", parameter.getName(), parameter.getDefaultValue()));
+                parameter.setValue(readInput());
+            }
+            CliSummary validationSummary = taskManager.validateParameters();
+            System.out.println(String.format("validation %s", validationSummary.getStatus()));
+            System.out.println(String.format("Message:  %s", validationSummary.getMessage()));
+            if (validationSummary.getStatus().equals(CliSummary.Status.FAIL)) {
+                System.out.println("Returning to home...");
+                loadHome();
+            }
+        }
+        else {
+            System.out.println("No parameters found for this task. Skipping to execution");
+        }
 
-        for (TaskParameter parameter: parameters) {
-            System.out.println(String.format("Enter %s :", parameter.getName()));
-            parameter.setValue(readInput());
-        }
-        CliSummary validationSummary = taskManager.validateParameters();
-        System.out.println(String.format("validation %s", validationSummary.getStatus()));
-        System.out.println(String.format("Message:  %s", validationSummary.getMessage()));
-        if (validationSummary.getStatus().equals(CliSummary.Status.FAIL)) {
-            System.out.println("Returning to home...");
-            loadHome();
-        }
         System.out.println(String.format("Starting execution of %s task", taskManager.getCurrentTask().getName()));
         CliSummary executionSummary = taskManager.runCurrentTask();
         if (executionSummary == null) {

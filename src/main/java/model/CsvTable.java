@@ -22,6 +22,10 @@ public class CsvTable {
             log.error("Wrong line size row: {}", row);
             throw new Exception(String.format("line size does not match with header size, headerSize: %s, lineSize: %s", headers.size(), row.size()));
         }
+        //check if any of the values are null or empty
+        for (int i=0; i<row.size(); i++) {
+            String value = row.get(i);
+        }
         this.rows.add(row);
     }
 

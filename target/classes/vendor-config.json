@@ -128,7 +128,8 @@
   {
     "vendor": "Disney Plus",
     "contains": [
-      "Disney Plus"
+      "Disney Plus",
+      "DISNEY PLUS"
     ],
     "notContain": [],
     "tags": [
@@ -977,7 +978,7 @@
   {
     "vendor": "Delta Air",
     "contains": [
-      "DELTA AIR LINES"
+      "DELTA AIR"
     ],
     "notContain": [],
     "tags": [
@@ -1120,7 +1121,8 @@
   {
     "vendor": "Macy's",
     "contains": [
-      "MACYS"
+      "MACYS",
+      "MACY'S"
     ],
     "notContain": [],
     "tags": [],
@@ -1206,7 +1208,8 @@
   {
     "vendor": "M&B Hair Salon",
     "contains": [
-      "M&B HAIR SALON"
+      "M&B HAIR SALON",
+      "M B HAIR SALON FOR MEN"
     ],
     "notContain": [],
     "tags": [
@@ -1217,7 +1220,8 @@
   {
     "vendor": "Falafel N' More",
     "contains": [
-      "FALAFEL N' MORE"
+      "FALAFEL N' MORE",
+      "FALAFEL N  MORE"
     ],
     "notContain": [],
     "tags": [
@@ -2892,12 +2896,410 @@
     "vendorType": "Parking"
   },
   {
-    "vendor": "VendorName",
+    "vendor": "Supreetha",
     "contains": [
-      "CONTAINS"
+      "ZELLE SUPREETHA M "
     ],
     "notContain": [],
     "tags": [],
+    "vendorType": "Friend"
+  },
+  {
+    "vendor" : "AK Driving School",
+    "contains" : [
+      "AK World Class Dri"
+    ],
+    "notContain" : [],
+    "tags" : [],
+    "vendorType" : "Driving School"
+  },
+  {
+    "vendor": "Ullu TV",
+    "contains": [
+      "ULLU APP"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Channel Subscription"
+  },
+  {
+    "vendor": "Smoke N More",
+    "contains": [
+      "SMOKE N MORE"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Smoke Shop"
+  },
+  {
+    "vendor": "Shish Kebab",
+    "contains": [
+      "SHISH KEBAB"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Food Truck"
+  },
+  {
+    "vendor": "Apple Gourmet",
+    "contains": [
+      "APPLE GOURMET"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "White House Tavern",
+    "contains": [
+      "WHITE HORSE TAVERN"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Bar"
+  },
+  {
+    "vendor": "Statue Cruises",
+    "contains": [
+      "STATUE CRUISES"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Boating"
+  },
+  {
+    "vendor": "Shiso",
+    "contains": [
+      "T2 SHISO 866508355 NY"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Sushi Bang Bang",
+    "contains": [
+      "SUSHI BANGBANG"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Bharat Bazan",
+    "contains": [
+      "BHARAT BAZAAR"
+    ],
+    "notContain": [],
+    "tags": [
+      "Indian Grocery",
+      "Tempe"
+    ],
+    "vendorType": "Grocery"
+  },
+  {
+    "vendor": "Diesel Barber Shop",
+    "contains": [
+      "DIESEL BARBERSHOP"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Hair Salon"
+  },
+  {
+    "vendor": "Dharmik",
+    "contains": [
+      "DHARMIK DRI"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Driving School"
+  },
+  {
+    "vendor" : "Jads Mediterranean Halal Grill Austin",
+    "contains" : [
+      "JADS MEDITERRANEAN GRILLAUSTIN"
+    ],
+    "notContain" : [],
+    "tags" : [],
+    "vendorType" : "Restaurant"
+  },
+  {
+    "vendor": "B&H Photos",
+    "contains": [
+      "B H PHOTO"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Photography Gears"
+  },
+  {
+    "vendor": "Hudson News",
+    "contains": [
+      "HUDSONNEWS"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Convenient Store"
+  },
+  {
+    "vendor": "Excellent Dumpling House",
+    "contains": [
+      "EXCELLENT DUMPLING HOUSENEW"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Empire on 5th NY",
+    "contains": [
+      "EMPIRE ON 5TH"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "IHop",
+    "contains": [
+      "IHOP"
+    ],
+    "notContain": [],
+    "tags": [
+      "Breakfast"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "The Human bean",
+    "contains": [
+      "HUMAN BEAN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Cafe",
+      "Tempe"
+    ],
     "vendorType": "vendorType"
+  },
+  {
+    "vendor": "Snakes & Lattes",
+    "contains": [
+      "SNAKES & LATTES"
+    ],
+    "notContain": [],
+    "tags": [
+      "Cafe",
+      "Tempe"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Staples",
+    "contains": [
+      "STAPLES"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Stationary"
+  },
+  {
+    "vendor": "Famous Footwear",
+    "contains": [
+      "FAMOUS FOOTWEAR"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Wearables"
+  },
+  {
+    "vendor": "Men's Warehouse",
+    "contains": [
+      "MENS WEARHOUSE"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Clothing"
+  },
+  {
+    "vendor": "Shawarma Paradise",
+    "contains": [
+      "SHAWARMA PARADISE"
+    ],
+    "notContain": [],
+    "tags": [
+      "Tempe"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Samsung",
+    "contains": [
+      "SAMSUNG WWW.SAMSUNG.CO"
+    ],
+    "notContain": [],
+    "tags": [
+      "Earbud"
+    ],
+    "vendorType": "Electronics"
+  },
+  {
+    "vendor": "Minute Key",
+    "contains": [
+      "MINUTEKEY"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Key Duplication Service"
+  },
+  {
+    "vendor": "DXO",
+    "contains": [
+      "DXO CONSUMER BOULOGNE"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Photography Software"
+  },
+  {
+    "vendor": "Akshay Raj",
+    "contains": [
+      "AKSHAY RAJ"
+    ],
+    "notContain": [],
+    "tags": [
+      "Ask Anurag"
+    ],
+    "vendorType": "Third Party"
+  },
+  {
+    "vendor": "Red Horn Coffee",
+    "contains": [
+      "RED HORN COFFEE"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin",
+      "Cafe"
+    ],
+    "vendorType": "Cafe"
+  },
+  {
+    "vendor": "Raising Canes",
+    "contains": [
+      "RAISING CANES"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Snooze",
+    "contains": [
+      "SNOOZE NORTHLAMAR AUSTIN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Breakfast",
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "American Airlines",
+    "contains": [
+      "AMERICAN AIR"
+    ],
+    "notContain": [],
+    "tags": [
+      "Travel"
+    ],
+    "vendorType": "Airline"
+  },
+  {
+    "vendor": "Green Mango Austin",
+    "contains": [
+      "GREEN MANGO AUSTIN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin",
+      "Thai"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "The Toasted Yolk",
+    "contains": [
+      "THE TOASTED YOLK CAFE"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin",
+      "Breakfast",
+      "Cafe"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Cinemark Theatres Cedar Park",
+    "contains": [
+      "CINEMARK THEATRES 1032 CEDAR PARK"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Movie Theatre"
+  },
+  {
+    "vendor": "Vape N Smoke Miami",
+    "contains": [
+      "VAPE N SMOKE SHOP MIAMI BEACH"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Smoke Shop"
+  },
+  {
+    "vendor": "The Abbey Brewing Co Miami",
+    "contains": [
+      "THE ABBEY BREWING CO. MIAMI BEACH"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Circle K Key Largo FL",
+    "contains": [
+      "CIRCLE K 07603 KEY LARGO FL20230820"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Gas Station"
   }
 ]

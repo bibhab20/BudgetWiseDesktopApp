@@ -35,9 +35,14 @@ public class CsvReader {
             log.info("{}",file.getName());
         }
 
-        log.info("Starting reading files");
+        log.info("Starting reading csv files");
         for (File file : files) {
-            tables.add(readCSVFile(file.getAbsolutePath()));
+            if (file.getName().contains("csv")) {
+                tables.add(readCSVFile(file.getAbsolutePath()));
+            }
+            else {
+                log.error("Non csv file found in the directory. File name: {}, path: {}",file.getName(), file.getAbsolutePath());
+            }
         }
 
         return tables;
@@ -50,7 +55,6 @@ public class CsvReader {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.isEmpty()) {
-                    log.warn("Line is empty");
                     continue;
                 }
                 List<String> row = readCsvLine(line);
@@ -60,26 +64,13 @@ public class CsvReader {
             e.printStackTrace();
         }
         CsvTable table = new CsvTable();
-        log.info("Header: {}", data.get(0));
         table.setHeaders(data.remove(0));
-        log.info("Break");
         for (List<String> line: data){
             table.addRow(line);
         }
         return table;
     }
 
-    private static List<String> parseCSVLine(String line) {
-        String[] valuesArray = line.split(",");
-        List<String> values = new ArrayList<>();
-
-        for (String value : valuesArray) {
-            // Removing leading and trailing spaces before adding to the list
-            values.add(value.trim());
-        }
-
-        return values;
-    }
 
     public static List<String> readCsvLine(String line) {
         List<String> result = new ArrayList<>();

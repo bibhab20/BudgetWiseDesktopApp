@@ -8,15 +8,14 @@ import controller.VendorController;
 import lombok.extern.slf4j.Slf4j;
 import model.Transaction;
 import model.TransactionRepository;
+import service.CategoryProcessorService;
 import service.DiscoverTransactionProcessor;
 import service.MidFirstTransactionProcessor;
 import service.VendorProcessorService;
 import util.AppConfig;
 import util.CsvWriter;
 import util.TransactionUtil;
-import util.cli.CliTaskManager;
-import util.cli.GetVendorTransactionSummaryTask;
-import util.cli.SimpleCliTask;
+import util.cli.*;
 import util.enrichment.EnrichmentManager;
 import util.enrichment.SimpleCategoryEnricher;
 import util.enrichment.VendorEnricher;
@@ -36,6 +35,7 @@ public class BudgetWiseApp {
     DiscoverTransactionProcessor discoverProcessor;
     MidFirstTransactionProcessor midFirstProcessor;
     VendorProcessorService vendorProcessorService;
+    CategoryProcessorService categoryProcessorService;
 
     //utils
     TransactionUtil transactionUtil;
@@ -63,6 +63,9 @@ public class BudgetWiseApp {
     SimpleCliTask simpleCliTask;
     CliTaskManager taskManager;
     GetVendorTransactionSummaryTask getVendorTransactionSummaryTask;
+    GetCategoryTransactionSummary getCategoryTransactionSummary;
+    GetTransactionsWithMissingVendorConfig getTransactionsWithMissingVendorConfig;
+    AddOrUpdateVendorConfig addOrUpdateVendorConfig;
 
     public BudgetWiseApp()  {
         loadObjects();
@@ -93,13 +96,20 @@ public class BudgetWiseApp {
         enrichmentManager = new EnrichmentManager(List.of(vendorEnricher, categoryEnricher));
 
         //services
-        vendorProcessorService = new VendorProcessorService(repository);
+        vendorProcessorService = new VendorProcessorService(repository, vendorConfigSupplier);
+        categoryProcessorService = new CategoryProcessorService(repository);
 
         //cli tasks
         simpleCliTask = new SimpleCliTask("Simple Adder");
-        getVendorTransactionSummaryTask = new GetVendorTransactionSummaryTask("Vendor Transaction Summary Task",
+        getVendorTransactionSummaryTask = new GetVendorTransactionSummaryTask("Vendor Transaction Summary",
                 appConfig, transactionUtil, vendorConfigSupplier, vendorProcessorService);
-        taskManager = new CliTaskManager(List.of(simpleCliTask, getVendorTransactionSummaryTask));
+        getCategoryTransactionSummary = new GetCategoryTransactionSummary("Category wise transaction summary",
+                categoryProcessorService, transactionUtil, categoryConfigSupplier);
+        getTransactionsWithMissingVendorConfig = new GetTransactionsWithMissingVendorConfig("Find transactions with missing vendor config", vendorProcessorService, transactionUtil);
+        addOrUpdateVendorConfig = new AddOrUpdateVendorConfig("Test Vendor Config", vendorTypeConfigSupplier, vendorProcessorService, transactionUtil);
+        taskManager = new CliTaskManager(List.of(simpleCliTask, getVendorTransactionSummaryTask,
+                getCategoryTransactionSummary, getTransactionsWithMissingVendorConfig,
+                addOrUpdateVendorConfig));
 
 
         //controllers
@@ -131,11 +141,6 @@ public class BudgetWiseApp {
 
     public void executeControllers() {
         try {
-            /*
-            csvOutController.getTransactionsWithVendorEnrichmentFailures(dateFormat.parse("1/1/22"), dateFormat.parse("6/30/23"));
-            vendorController.writeAllVendorTypesToCsv();
-            jsonOutController.getAllTransactions();
-             */
             cliController.start();
         } catch (Exception e) {
             e.printStackTrace();

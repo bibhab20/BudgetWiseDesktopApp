@@ -16,6 +16,7 @@ import java.util.Map;
 
 @Slf4j
 public class VendorEnricher implements TransactionEnricher {
+    private static final String VENDOR_MATCHES_HEADER_KEY = "transaction.header.vendor.matches";
     AppConfig config;
     Map<String, AdvanceFilter> filterMap;
     Map<String, VendorConfig> vendorConfigMap;
@@ -42,18 +43,20 @@ public class VendorEnricher implements TransactionEnricher {
                 log.warn("No match found for transaction with id: {}", transaction.getId());
                 transaction.setVendor("UNKNOWN");
                 transaction.setVendorType("UNKNOWN");
+                transaction.addAdditionalDetails(config.getProperties().getProperty(VENDOR_MATCHES_HEADER_KEY), "NONE");
                 unknownCount++;
             } else if (vendors.size() > 1) {
                 log.error("Multiple vendor matches the transaction with id: {} and the matches are {}", transaction.getId(), vendors);
                 transaction.setVendor("ERROR");
                 transaction.setVendorType("ERROR");
-                transaction.addAdditionalDetails("Vendor matches", toCommaDelimitedString(vendors));
+                transaction.addAdditionalDetails(config.getProperties().getProperty(VENDOR_MATCHES_HEADER_KEY), toCommaDelimitedString(vendors));
                 errorCount++;
             }
             else {
                 successCount++;
                 transaction.setVendor(vendors.get(0));
                 transaction.setVendorType(vendorConfigMap.get(vendors.get(0)).getVendorType());
+                transaction.addAdditionalDetails(config.getProperties().getProperty(VENDOR_MATCHES_HEADER_KEY), vendors.get(0));
             }
         }
         log.info("{} transactions successfully enriched with vendor data",successCount);

@@ -53,12 +53,14 @@ public class CsvTableUtil {
     public static String getCliTable(CsvTable table) {
         int numColumns = table.getHeaders().size();
         int[] columnWidths = new int[numColumns];
-
+        if (table.getRows().size() == 0) {
+            return "---Empty Table---";
+        }
         // Calculate the column widths based on header and row values
         for (int i = 0; i < numColumns; i++) {
             int maxWidth = table.getHeaders().get(i).length();
             for (List<String> row : table.getRows()) {
-                if (i < row.size()) {
+                if (i < row.size() && row.get(i) != null) {
                     maxWidth = Math.max(maxWidth, row.get(i).length());
                 }
             }

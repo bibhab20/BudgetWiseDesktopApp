@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class GetVendorTransactionSummaryTask implements CliTask {
+public class GetVendorTransactionSummaryTask extends CliTask {
     private static final String SIMPLE_DATE_FORMAT_CONFIG = "default.date.format";
     private static final String START_DATE = "Start Date";
     private static final String END_DATE = "End Date";
@@ -59,10 +59,6 @@ public class GetVendorTransactionSummaryTask implements CliTask {
         this.description = loadDescription();
     }
 
-    @Override
-    public String getName() {
-        return this.name;
-    }
 
     @Override
     public CliSummary run() {
@@ -87,11 +83,6 @@ public class GetVendorTransactionSummaryTask implements CliTask {
 
     }
 
-    @Override
-    public List<TaskParameter> getParameters() {
-        return this.parameters;
-    }
-
 
     @Override
     public CliSummary validateParameters() {
@@ -100,29 +91,10 @@ public class GetVendorTransactionSummaryTask implements CliTask {
                 parameter.setValue(parameter.getDefaultValue());
             }
         }
-        try {
-            this.startDate = dateFormat.parse(parameters.get(0).getValue());
-            this.endDate = dateFormat.parse(parameters.get(1).getValue());
-            this.vendorName = parameters.get(2).getValue();
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return new CliSummary(CliSummary.Status.FAIL, e.getMessage());
-        }
+        this.startDate = CliUtils.parseDate(parameters.get(0).getValue());
+        this.endDate = CliUtils.parseDate(parameters.get(1).getValue());
+        this.vendorName = parameters.get(2).getValue();
         return new CliSummary(CliSummary.Status.PASS, "Validation Success");
-    }
-
-    @Override
-    public String getDescription() {
-        return this.description;
-    }
-
-    private boolean checkForNullAndEmpty() {
-        for (String value: this.parameterMap.values()) {
-            if (value == null || value.isBlank()) {
-                return false;
-            }
-        }
-        return true;
     }
 
     private String loadDescription() {
@@ -133,46 +105,8 @@ public class GetVendorTransactionSummaryTask implements CliTask {
         for (VendorConfig vendorConfig: this.vendorConfigSupplier.get()) {
             vendorNames.add(vendorConfig.getName());
         }
-        return getCliGrid(vendorNames, VENDOR_NAME_COLUMN_COUNT);
+        return CliUtils.getCliGrid(vendorNames, VENDOR_NAME_COLUMN_COUNT);
 
-    }
-
-    public static String getCliGrid(List<String> strings, int columns) {
-        if (strings == null || strings.isEmpty() || columns <= 0) {
-            return "";
-        }
-
-        int maxStringLength = 0;
-
-        // Find the length of the longest string
-        for (String str : strings) {
-            maxStringLength = Math.max(maxStringLength, str.length());
-        }
-
-        // Calculate the column width based on the longest string
-        int columnWidth = maxStringLength + 2; // Add some spacing between columns
-
-        StringBuilder result = new StringBuilder();
-
-        int rows = (int) Math.ceil((double) strings.size() / columns);
-
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
-                int index = row + col * rows;
-                if (index < strings.size()) {
-                    String str = strings.get(index);
-                    result.append(String.format("%-" + columnWidth + "s", str));
-
-                    if (col < columns - 1) {
-                        // Add some spacing between columns
-                        result.append("  ");
-                    }
-                }
-            }
-            result.append("\n");
-        }
-
-        return result.toString();
     }
 
 

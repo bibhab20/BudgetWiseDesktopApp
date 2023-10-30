@@ -11,17 +11,20 @@ import util.TransactionUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetTransactionsWithMissingVendorConfig implements CliTask{
+public class GetTransactionsWithMissingVendorConfig extends CliTask {
     String name, description;
     VendorProcessorService processorService;
     List<TaskParameter> parameters;
     TransactionUtil transactionUtil;
+    List<TransactionUtil.TransactionProperty> columnList;
 
     public GetTransactionsWithMissingVendorConfig(String name, VendorProcessorService processorService, TransactionUtil transactionUtil) {
         this.name = name;
         this.processorService = processorService;
         this.transactionUtil = transactionUtil;
         this.description = "This task prints the list of transaction with unknown or multiple vendors";
+        this.parameters = new ArrayList<>();
+        loadColumnList();
 
     }
 
@@ -35,7 +38,7 @@ public class GetTransactionsWithMissingVendorConfig implements CliTask{
         List<Transaction> result = processorService.filterByMissingVendors();
         CsvTable table;
         try {
-            table = transactionUtil.getCsv(result, new ArrayList<>());
+            table = transactionUtil.getCustomColumnCsv(result, this.columnList);
         } catch (Exception e) {
             return new CliSummary(CliSummary.Status.FAIL, e.getMessage());
         }
@@ -62,5 +65,16 @@ public class GetTransactionsWithMissingVendorConfig implements CliTask{
     @Override
     public String getDescription() {
         return this.description;
+    }
+
+    private void loadColumnList() {
+        this.columnList = new ArrayList<>();
+        columnList.add(TransactionUtil.TransactionProperty.DATE);
+        columnList.add(TransactionUtil.TransactionProperty.SOURCE);
+        columnList.add(TransactionUtil.TransactionProperty.TYPE);
+        columnList.add(TransactionUtil.TransactionProperty.AMOUNT);
+        columnList.add(TransactionUtil.TransactionProperty.DESCRIPTION);
+        columnList.add(TransactionUtil.TransactionProperty.VENDOR);
+        columnList.add(TransactionUtil.TransactionProperty.VENDOR_MATCHES);
     }
 }

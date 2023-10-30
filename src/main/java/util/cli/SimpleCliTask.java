@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SimpleCliTask implements CliTask{
+public class SimpleCliTask extends CliTask {
     String name;
     Map<String, String> parameterMap;
     public static final String PARAMETER_A = "A";

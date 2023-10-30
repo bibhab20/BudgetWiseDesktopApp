@@ -14,4 +14,8 @@ public class TaskParameter {
         this.name = name;
         this.defaultValue = defaultValue;
     }
+
+    public void setValueToDefault() {
+        this.value = this.defaultValue;
+    }
 }
