@@ -1,5 +1,6 @@
 import config.CategoryConfigSupplier;
 import config.VendorConfigSupplier;
+import config.VendorOverrideConfigSupplier;
 import config.VendorTypeConfigSupplier;
 import controller.CLIController;
 import controller.CsvOutController;
@@ -8,17 +9,12 @@ import controller.VendorController;
 import lombok.extern.slf4j.Slf4j;
 import model.Transaction;
 import model.TransactionRepository;
-import service.CategoryProcessorService;
-import service.DiscoverTransactionProcessor;
-import service.MidFirstTransactionProcessor;
-import service.VendorProcessorService;
+import service.*;
 import util.AppConfig;
 import util.CsvWriter;
 import util.TransactionUtil;
 import util.cli.*;
-import util.enrichment.EnrichmentManager;
-import util.enrichment.SimpleCategoryEnricher;
-import util.enrichment.VendorEnricher;
+import util.enrichment.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +32,9 @@ public class BudgetWiseApp {
     MidFirstTransactionProcessor midFirstProcessor;
     VendorProcessorService vendorProcessorService;
     CategoryProcessorService categoryProcessorService;
+    TransactionSummarizationService transactionSummarizationService;
+    TransactionProcessorService transactionProcessorService;
+    PersistenceService persistenceService;
 
     //utils
     TransactionUtil transactionUtil;
@@ -47,10 +46,13 @@ public class BudgetWiseApp {
     VendorConfigSupplier vendorConfigSupplier;
     VendorTypeConfigSupplier vendorTypeConfigSupplier;
     CategoryConfigSupplier categoryConfigSupplier;
+    VendorOverrideConfigSupplier vendorOverrideConfigSupplier;
 
     //Enrichment
     EnrichmentManager enrichmentManager;
     VendorEnricher vendorEnricher;
+    IDEnricher idEnricher;
+    VendorOverrideEnricher vendorOverrideEnricher;
     SimpleCategoryEnricher categoryEnricher;
 
     //Controller
@@ -65,7 +67,14 @@ public class BudgetWiseApp {
     GetVendorTransactionSummaryTask getVendorTransactionSummaryTask;
     GetCategoryTransactionSummary getCategoryTransactionSummary;
     GetTransactionsWithMissingVendorConfig getTransactionsWithMissingVendorConfig;
+    GetCategoryTree getCategoryTree;
+    GetMonthlySummary getMonthlySummary;
+    GetMonthlyTrend getMonthlyTrend;
     AddOrUpdateVendorConfig addOrUpdateVendorConfig;
+    GenericTransactionQueryTask genericTransactionQueryTask;
+    GetTransactionByDateTask getTransactionByDateTask;
+    GetMonthlyTrendTableByCategoryTask getMonthlyTrendTableByCategoryTask;
+    GetMonthlyCategoryWiseChartTask getMonthlyCategoryWiseChartTask;
 
     public BudgetWiseApp()  {
         loadObjects();
@@ -88,16 +97,23 @@ public class BudgetWiseApp {
         //suppliers
         vendorConfigSupplier = new VendorConfigSupplier(appConfig);
         vendorTypeConfigSupplier = new VendorTypeConfigSupplier(appConfig, vendorConfigSupplier);
-        categoryConfigSupplier = new CategoryConfigSupplier(appConfig);
+        categoryConfigSupplier = new CategoryConfigSupplier(appConfig, vendorTypeConfigSupplier);
+        vendorOverrideConfigSupplier = new VendorOverrideConfigSupplier(appConfig);
 
         //enrichers
         vendorEnricher = new VendorEnricher(appConfig, vendorConfigSupplier);
         categoryEnricher = new SimpleCategoryEnricher(categoryConfigSupplier, appConfig);
-        enrichmentManager = new EnrichmentManager(List.of(vendorEnricher, categoryEnricher));
+        idEnricher = new IDEnricher(transactionUtil);
+        vendorOverrideEnricher = new VendorOverrideEnricher(vendorOverrideConfigSupplier);
+        enrichmentManager = new EnrichmentManager(List.of(idEnricher, vendorEnricher, categoryEnricher, vendorOverrideEnricher));
 
         //services
         vendorProcessorService = new VendorProcessorService(repository, vendorConfigSupplier);
         categoryProcessorService = new CategoryProcessorService(repository);
+        transactionSummarizationService = new TransactionSummarizationService(categoryConfigSupplier,
+                vendorTypeConfigSupplier, transactionUtil, repository);
+        transactionProcessorService = new TransactionProcessorService(transactionUtil, repository);
+        persistenceService = new PersistenceService(repository);
 
         //cli tasks
         simpleCliTask = new SimpleCliTask("Simple Adder");
@@ -105,11 +121,26 @@ public class BudgetWiseApp {
                 appConfig, transactionUtil, vendorConfigSupplier, vendorProcessorService);
         getCategoryTransactionSummary = new GetCategoryTransactionSummary("Category wise transaction summary",
                 categoryProcessorService, transactionUtil, categoryConfigSupplier);
-        getTransactionsWithMissingVendorConfig = new GetTransactionsWithMissingVendorConfig("Find transactions with missing vendor config", vendorProcessorService, transactionUtil);
-        addOrUpdateVendorConfig = new AddOrUpdateVendorConfig("Test Vendor Config", vendorTypeConfigSupplier, vendorProcessorService, transactionUtil);
-        taskManager = new CliTaskManager(List.of(simpleCliTask, getVendorTransactionSummaryTask,
+        getTransactionsWithMissingVendorConfig = new GetTransactionsWithMissingVendorConfig("Find transactions with missing vendor config",
+                vendorProcessorService, transactionUtil);
+        addOrUpdateVendorConfig = new AddOrUpdateVendorConfig("Test Vendor Config",
+                vendorTypeConfigSupplier, vendorProcessorService, transactionUtil);
+        getCategoryTree = new GetCategoryTree("Get the category tree", categoryConfigSupplier,
+                vendorTypeConfigSupplier, persistenceService, transactionUtil);
+        getMonthlySummary = new GetMonthlySummary("Get Monthly summary tree", repository, transactionSummarizationService);
+        getMonthlyTrend = new GetMonthlyTrend("Get Monthly Trend Tree", transactionSummarizationService);
+        getTransactionByDateTask = new GetTransactionByDateTask("Get transactions for a given date range",
+                transactionProcessorService, transactionUtil);
+        genericTransactionQueryTask = new GenericTransactionQueryTask("Generic Transaction query", categoryConfigSupplier, vendorConfigSupplier,
+                vendorTypeConfigSupplier, repository, transactionUtil);
+        getMonthlyTrendTableByCategoryTask = new GetMonthlyTrendTableByCategoryTask("Get Monthly trend table by category",
+                transactionSummarizationService);
+        getMonthlyCategoryWiseChartTask = new GetMonthlyCategoryWiseChartTask("Get bar chart for a given category and date range",
+                categoryConfigSupplier, transactionSummarizationService);
+        taskManager = new CliTaskManager(List.of(getVendorTransactionSummaryTask,
                 getCategoryTransactionSummary, getTransactionsWithMissingVendorConfig,
-                addOrUpdateVendorConfig));
+                addOrUpdateVendorConfig, getCategoryTree, getMonthlySummary, getMonthlyTrend, getTransactionByDateTask,
+                genericTransactionQueryTask, getMonthlyTrendTableByCategoryTask, getMonthlyCategoryWiseChartTask));
 
 
         //controllers
@@ -117,6 +148,7 @@ public class BudgetWiseApp {
         vendorController = new VendorController(vendorTypeConfigSupplier, appConfig, writer);
         jsonOutController = new JsonOutController(repository, appConfig);
         cliController = new CLIController(appConfig, taskManager);
+        int[] arr = new int[2];
 
 
     }

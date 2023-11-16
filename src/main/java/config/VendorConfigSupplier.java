@@ -7,6 +7,7 @@ import util.AppConfig;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -22,6 +23,13 @@ public class VendorConfigSupplier {
 
     public List<VendorConfig> get() {
         return vendorConfigs;
+    }
+    public List<String> getNames() {
+        List<String> names = new ArrayList<>();
+        for (VendorConfig config: this.vendorConfigs) {
+            names.add(config.getName());
+        }
+        return names;
     }
 
     private List<VendorConfig> loadVendorConfigFromJson() {

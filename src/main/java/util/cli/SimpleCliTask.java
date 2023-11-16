@@ -15,6 +15,7 @@ public class SimpleCliTask extends CliTask {
     public static final String NONE = "none";
 
     public SimpleCliTask(String name) {
+        super();
         this.name = name;
         parameterMap = new HashMap<>();
         parameterMap.put(PARAMETER_A, NONE);

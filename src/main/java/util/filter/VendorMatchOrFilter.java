@@ -1,5 +1,6 @@
 package util.filter;
 
+import config.AppConstants;
 import model.Transaction;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class VendorMatchOrFilter implements TransactionFilter {
     @Override
     public boolean pass(Transaction transaction) {
         for (String vendor: vendors) {
-            if (transaction.getVendor().equals(vendor)) {
+            if (vendor.equals(AppConstants.ALL_PASS_FILTER) || transaction.getVendor().equals(vendor)) {
                 return true;
             }
         }

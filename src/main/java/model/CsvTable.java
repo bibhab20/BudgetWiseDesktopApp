@@ -1,14 +1,21 @@
 package model;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 
 @Slf4j
 public class CsvTable {
     List<String> headers = new ArrayList<>();
     List<List<String>> rows = new ArrayList<>();
+    @Getter
+    MetaData metaData = new MetaData();
 
     public void setHeaders(List<String> headers){
         this.headers = headers;
@@ -24,7 +31,9 @@ public class CsvTable {
         }
         //check if any of the values are null or empty
         for (int i=0; i<row.size(); i++) {
-            String value = row.get(i);
+            if (row.get(i) == null || row.get(i).isBlank()) {
+                log.debug("{} index in row {} in null or empty", i, row);
+            }
         }
         this.rows.add(row);
     }
@@ -33,6 +42,19 @@ public class CsvTable {
     public List<List<String>> getRows() {
         return this.rows;
     }
+
+    @Getter
+    @Setter
+    public class MetaData {
+        String headerColor;
+        String highlightColor;
+        Set<Integer> highlightLineIndices;
+
+        public MetaData() {
+            this.highlightLineIndices = new HashSet<>();
+        }
+    }
+
 
 }
 

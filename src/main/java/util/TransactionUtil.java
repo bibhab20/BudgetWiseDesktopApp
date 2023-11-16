@@ -4,6 +4,9 @@ import model.CsvTable;
 import model.Transaction;
 import lombok.extern.slf4j.Slf4j;
 import model.TransactionType;
+import util.cli.CliUtils;
+import util.filter.AdvanceFilter;
+import util.filter.TransactionFilter;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -29,12 +32,21 @@ public class TransactionUtil {
     private final static String SUMMARY_AMOUNT_HEADER = "transaction.summary.header.amount";
     private final static String SUMMARY_BALANCE_KEY = "transaction.summary.key.balance";
 
+    //Transaction sorting
+    public final static int DATE_ASC = 0;
+    public final static int DATE_DSC = 2;
+    public final static int AMOUNT_ASC = 3;
+    public final static int AMOUNT_DSC = 4;
+
     private AppConfig config;
     private Map<TransactionProperty, String> propertyNameMap;
+    private List<Comparator<Transaction>> comparators;
 
     public TransactionUtil(AppConfig config) {
         this.config = config;
         loadPropertyNameMap();
+        loadComparators();
+
     }
 
     private void loadPropertyNameMap() {
@@ -133,10 +145,10 @@ public class TransactionUtil {
                 debitAmount += transaction.getAmount();
             }
         }
-        List<String> creditRow = new ArrayList<>(List.of("Credit", String.valueOf(creditCount), String.valueOf(creditAmount)));
-        List<String> debitRow = new ArrayList<>(List.of("Debit", String.valueOf(debitCount), String.valueOf(debitAmount)));
+        List<String> creditRow = new ArrayList<>(List.of("Credit", String.valueOf(creditCount), getAmountString(creditAmount)));
+        List<String> debitRow = new ArrayList<>(List.of("Debit", String.valueOf(debitCount), getAmountString(debitAmount)));
         List<String> totalRow = new ArrayList<>(List.of(config.getProperties().getProperty(SUMMARY_BALANCE_KEY),
-                String.valueOf(transactionCount), String.valueOf(balance)));
+                String.valueOf(transactionCount), getAmountString(balance)));
 
         table.addRow(creditRow);
         table.addRow(debitRow);
@@ -169,12 +181,46 @@ public class TransactionUtil {
         return table;
     }
 
+    public CsvTable getCsv(List<Transaction> transactions, List<TransactionProperty> properties, AdvanceFilter filter,
+                           String headerColor, String highlightColor) {
 
-    private String getTransactionPropertyValue(Transaction transaction, TransactionProperty property) {
+        List<String> headers = new ArrayList<>();
+        CsvTable table = new CsvTable();
+        table.getMetaData().setHeaderColor(headerColor);
+        table.getMetaData().setHighlightColor(highlightColor);
+        for (TransactionProperty property: properties) {
+            String header = this.propertyNameMap.get(property);
+            headers.add(header);
+        }
+        table.setHeaders(headers);
+        int index = 0;
+        for (Transaction transaction: transactions) {
+            List<String> row = new ArrayList<>();
+            if (filter != null && filter.orPass(transaction)) {
+                table.getMetaData().getHighlightLineIndices().add(index);
+                log.debug("{} index is added for highlight", index);
+            }
+            for (TransactionProperty property: properties) {
+                String value = getTransactionPropertyValue(transaction, property);
+                row.add(value);
+            }
+            try {
+                table.addRow(row);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            index++;
+        }
+        return table;
+
+    }
+
+
+    public String getTransactionPropertyValue(Transaction transaction, TransactionProperty property) {
         SimpleDateFormat sdf = new SimpleDateFormat(config.getProperties().getProperty(DEFAULT_DATE_FORMAT_KEY));
         switch (property) {
             case ID:
-                return String.valueOf(transaction.getId());
+                return transaction.getId();
             case DATE:
                 return sdf.format(transaction.getTransactionDate());
             case SOURCE:
@@ -208,5 +254,24 @@ public class TransactionUtil {
         VENDOR,
         VENDOR_TYPE,
         VENDOR_MATCHES
+    }
+
+    private void loadComparators() {
+        this.comparators = new ArrayList<>();
+        comparators.add(Comparator.comparing(Transaction::getTransactionDate));
+        comparators.add((o1, o2) -> o2.getTransactionDate().compareTo(o1.getTransactionDate()));
+        comparators.add(Comparator.comparing(Transaction::getTransactionDate));
+        comparators.add((o1, o2) -> o2.getTransactionDate().compareTo(o1.getTransactionDate()));
+    }
+    public Comparator<Transaction> getComparator(int type) {
+        return this.comparators.get(type);
+    }
+    private static String getAmountString(double amount) {
+        String sign = amount<0? "-" : "";
+        return sign + "$" + Math.abs(Math.round((amount) * 100.0) / 100.0);
+    }
+
+    private static String getPercentageString(double percentage) {
+        return percentage + "%";
     }
 }

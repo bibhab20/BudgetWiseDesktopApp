@@ -2,5 +2,6 @@ package model;
 
 public enum TransactionType {
     CREDIT,
-    DEBIT
+    DEBIT,
+    ALL
 }

@@ -5,14 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import config.VendorConfig;
 import config.VendorTypeConfigSupplier;
-import model.CliSummary;
-import model.CsvTable;
-import model.TaskParameter;
-import model.Transaction;
+import model.*;
 import service.VendorProcessorService;
 import util.CsvTableUtil;
 import util.TransactionUtil;
 
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +24,7 @@ public class AddOrUpdateVendorConfig extends CliTask{
     VendorConfig newConfig;
     TransactionUtil transactionUtil;
     List<TransactionUtil.TransactionProperty> columnList;
+    List<TaskParameter> parameters;
 
     public AddOrUpdateVendorConfig(String name, VendorTypeConfigSupplier vendorTypeConfigSupplier, VendorProcessorService processorService, TransactionUtil transactionUtil) {
         this.name = name;
@@ -137,6 +136,7 @@ public class AddOrUpdateVendorConfig extends CliTask{
         parameters.add(new TaskParameter("Contains",""));
         parameters.add(new TaskParameter("Does not contain",""));
         parameters.add(new TaskParameter("Vendor Type","UNKNOWN"));
+        this.parameterBatches.add(new ParameterBatch("ONE", parameters));
     }
 
     private void loadColumnList() {

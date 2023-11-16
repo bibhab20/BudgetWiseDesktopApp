@@ -61,4 +61,12 @@ public class TransactionRepository {
         });
         return all;
     }
+
+    public List<Transaction> get(TransactionType transactionType) {
+        if (transactionType.equals(TransactionType.ALL))
+            return this.getAll();
+        if (transactionType.equals(TransactionType.CREDIT))
+            return this.credits;
+        return this.debits;
+    }
 }

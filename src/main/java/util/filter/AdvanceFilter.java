@@ -15,7 +15,7 @@ public class AdvanceFilter {
     }
 
     public List<Transaction> filter(List<Transaction> transactions) {
-        log.info("Starting filtering with {} transactions", transactions.size());
+        log.debug("Starting filtering with {} transactions", transactions.size());
         List<Transaction> result = new ArrayList<>();
         for (Transaction transaction: transactions) {
             if (this.pass(transaction)) {
@@ -33,6 +33,14 @@ public class AdvanceFilter {
             }
         }
         return true;
+    }
+
+    public boolean orPass(Transaction transaction) {
+        for (TransactionFilter filter: filters) {
+            if (filter.pass(transaction))
+                return true;
+        }
+        return false;
     }
 
     public static class Builder {

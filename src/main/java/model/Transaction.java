@@ -16,7 +16,10 @@ public class Transaction {
     private Map<String, String> additionalDetails;
     private TransactionSource source;
     private Set<Tag> tags;
-    private final UUID id;
+
+    @Getter
+    @Setter
+    private String id;
     private String vendor;
 
     @Getter
@@ -27,6 +30,10 @@ public class Transaction {
     @Setter
     private boolean enriched;
 
+    @Getter
+    @Setter
+    private List<String> enrichmentList;
+
     public Transaction(Date transactionDate, double amount, TransactionType type, String description, Map<String, String> additionalDetails, TransactionSource source, Set<Tag> tags, String vendor) {
         this.transactionDate = transactionDate;
         this.amount = amount;
@@ -35,11 +42,11 @@ public class Transaction {
         this.additionalDetails = additionalDetails;
         this.source = source;
         this.tags = tags;
-        this.id = UUID.randomUUID();
         this.vendor = vendor;
+        this.enrichmentList = new ArrayList<>();
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 

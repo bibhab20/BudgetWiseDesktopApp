@@ -31,14 +31,14 @@ public class CsvReader {
             throw new Exception("There are no files in the folder");
         }
         log.info("{} file(s) found in the folder", files.length);
-        for (File file: files) {
-            log.info("{}",file.getName());
-        }
+
 
         log.info("Starting reading csv files");
         for (File file : files) {
             if (file.getName().contains("csv")) {
-                tables.add(readCSVFile(file.getAbsolutePath()));
+                CsvTable table = readCSVFile(file.getAbsolutePath());
+                tables.add(table);
+                log.debug("Read file {} and {} transactions detected", file.getName(), table.getRows().size());
             }
             else {
                 log.error("Non csv file found in the directory. File name: {}, path: {}",file.getName(), file.getAbsolutePath());

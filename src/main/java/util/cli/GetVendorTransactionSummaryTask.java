@@ -2,33 +2,28 @@ package util.cli;
 
 import config.VendorConfig;
 import config.VendorConfigSupplier;
-import model.CliSummary;
-import model.CsvTable;
-import model.TaskParameter;
-import model.Transaction;
+import lombok.extern.slf4j.Slf4j;
+import model.*;
 import service.VendorProcessorService;
 import util.AppConfig;
 import util.CsvTableUtil;
 import util.TransactionUtil;
 
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@Slf4j
 public class GetVendorTransactionSummaryTask extends CliTask {
     private static final String SIMPLE_DATE_FORMAT_CONFIG = "default.date.format";
     private static final String START_DATE = "Start Date";
     private static final String END_DATE = "End Date";
     private static final String VENDOR_NAME = "Vendor Name";
     public static final String NONE = "none";
+    private static final String DESCRIPTION = "Given a date range and vendor name, it shows the list of transactions";
 
     public static final Integer VENDOR_NAME_COLUMN_COUNT = 4;
     public static final String BALANCE = "Balance";
 
-    String name, description;
-    Map<String, String> parameterMap;
-    List<TaskParameter> parameters;
     VendorProcessorService processorService;
     VendorConfigSupplier vendorConfigSupplier;
     SimpleDateFormat dateFormat;
@@ -36,25 +31,25 @@ public class GetVendorTransactionSummaryTask extends CliTask {
     AppConfig appConfig;
     String vendorName;
     TransactionUtil transactionUtil;
+    List<TaskParameter> parameters;
 
     public GetVendorTransactionSummaryTask(String name, AppConfig appConfig, TransactionUtil transactionUtil,
                                            VendorConfigSupplier vendorConfigSupplier, VendorProcessorService processorService) {
+        super();
         this.name = name;
         this.appConfig = appConfig;
         this.dateFormat = new SimpleDateFormat(appConfig.getProperties().getProperty(SIMPLE_DATE_FORMAT_CONFIG));
-        this.parameterMap = new HashMap<>();
         this.transactionUtil = transactionUtil;
         this.vendorConfigSupplier = vendorConfigSupplier;
         this.processorService = processorService;
-        this.parameterMap.put(START_DATE, NONE);
-        this.parameterMap.put(END_DATE, NONE);
-        this.parameterMap.put(VENDOR_NAME, NONE);
-
         //new parameter object
         this.parameters = new ArrayList<>();
         parameters.add(new TaskParameter(START_DATE, "1/1/2022"));
-        parameters.add(new TaskParameter(END_DATE, "1/1/2024"));
-        parameters.add(new TaskParameter(VENDOR_NAME, "Uber"));
+        parameters.add(new TaskParameter(END_DATE, "1/5/2022"));
+        List<String> vendorNames = vendorConfigSupplier.getNames();
+        vendorNames.sort((String::compareTo));
+        parameters.add(new TaskParameter(VENDOR_NAME, "Uber", vendorNames));
+        this.getParameterBatches().add(new ParameterBatch("ONE", parameters));
 
         this.description = loadDescription();
     }
@@ -62,9 +57,11 @@ public class GetVendorTransactionSummaryTask extends CliTask {
 
     @Override
     public CliSummary run() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
         List<Transaction> result = this.processorService.filterByVendorNameAndDate(startDate, endDate, vendorName);
         if (result.size() == 0) {
-            return new CliSummary(CliSummary.Status.FAIL, "The transactions found for the given vendor");
+            return new CliSummary(CliSummary.Status.FAIL, String.format("No transactions found for the given vendor %s, from  %s, to %s",
+                    vendorName, sdf.format(startDate), sdf.format(endDate) ));
         }
         CsvTable table;
         try {
@@ -86,26 +83,23 @@ public class GetVendorTransactionSummaryTask extends CliTask {
 
     @Override
     public CliSummary validateParameters() {
+        CliSummary superSummary = super.validateParameters();
+        if (superSummary.getStatus().equals(CliSummary.Status.FAIL)) {
+            return superSummary;
+        }
         for (TaskParameter parameter: this.parameters) {
             if (parameter.getValue() == null || parameter.getValue().isBlank()) {
                 parameter.setValue(parameter.getDefaultValue());
             }
         }
         this.startDate = CliUtils.parseDate(parameters.get(0).getValue());
-        this.endDate = CliUtils.parseDate(parameters.get(1).getValue());
+        this.endDate = CliUtils.parseEndDate(parameters.get(1).getValue());
         this.vendorName = parameters.get(2).getValue();
-        return new CliSummary(CliSummary.Status.PASS, "Validation Success");
+        return new CliSummary(CliSummary.Status.PASS, superSummary.getMessage());
     }
 
     private String loadDescription() {
-        List<String> vendorNames = new ArrayList<>();
-        if (vendorConfigSupplier == null) {
-            System.out.println("vendor config supplier is null");
-        }
-        for (VendorConfig vendorConfig: this.vendorConfigSupplier.get()) {
-            vendorNames.add(vendorConfig.getName());
-        }
-        return CliUtils.getCliGrid(vendorNames, VENDOR_NAME_COLUMN_COUNT);
+        return DESCRIPTION;
 
     }
 

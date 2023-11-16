@@ -19,6 +19,7 @@ public class GetTransactionsWithMissingVendorConfig extends CliTask {
     List<TransactionUtil.TransactionProperty> columnList;
 
     public GetTransactionsWithMissingVendorConfig(String name, VendorProcessorService processorService, TransactionUtil transactionUtil) {
+        super();
         this.name = name;
         this.processorService = processorService;
         this.transactionUtil = transactionUtil;
@@ -36,6 +37,9 @@ public class GetTransactionsWithMissingVendorConfig extends CliTask {
     @Override
     public CliSummary run() {
         List<Transaction> result = processorService.filterByMissingVendors();
+        if (result.size() == 0) {
+            return new CliSummary(CliSummary.Status.PASS, "No transactions found");
+        }
         CsvTable table;
         try {
             table = transactionUtil.getCustomColumnCsv(result, this.columnList);

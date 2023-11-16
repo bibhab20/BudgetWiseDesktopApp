@@ -56,6 +56,7 @@ public class VendorProcessorService {
                 result.add(transaction);
             }
         }
+        result.sort(Comparator.comparing(Transaction::getDescription));
         log.info("{} transactions found with missing vendors", result.size());
         return result;
     }

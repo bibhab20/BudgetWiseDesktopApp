@@ -1,5 +1,6 @@
 package util.filter;
 
+import config.AppConstants;
 import model.Transaction;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class ContainsVendorFilter implements TransactionFilter{
     @Override
     public boolean pass(Transaction transaction) {
         for (String token: matchStrings) {
-            if (transaction.getVendor().contains(token)) {
+            if (token.equals(AppConstants.ALL_PASS_FILTER) || transaction.getVendor().contains(token)) {
                 return true;
             }
         }

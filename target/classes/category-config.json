@@ -46,7 +46,12 @@
       "Vending Machine",
       "Food Delivery Service",
       "Restaurant",
-      "Food Delivery Service Subscription"
+      "Bakery",
+      "Bar",
+      "Cafe",
+      "Food Delivery",
+      "Food Delivery Service Subscription",
+      "Ice-cream Shop"
     ]
   },
   {
@@ -58,19 +63,16 @@
       "Smoke Shop",
       "High",
       "Channel Subscription",
-      "Gaming"
+      "Gaming",
+      "Movie Theatre"
     ]
   },
   {
     "name": "Friends & Family",
     "vendorTypes": [
       "International Money Transfer",
-      "Friend"
-    ]
-  },
-  {
-    "name": "Gift",
-    "vendorTypes": [
+      "Friend",
+      "Gift Shop",
       "Duty Free Shop"
     ]
   },
@@ -78,7 +80,9 @@
     "name": "Grocery & House Utility",
     "vendorTypes": [
       "Supermarket",
-      "Supermarket Subscription"
+      "Supermarket Subscription",
+      "Grocery",
+      "Key Duplication Service"
     ]
   },
   {
@@ -102,7 +106,8 @@
     "vendorTypes": [
       "Software",
       "Photography Software",
-      "Cloud Service"
+      "Cloud Service",
+      "Photography Gears"
     ]
   },
   {
@@ -115,14 +120,16 @@
       "House Utility",
       "Home Insurance",
       "Electricity",
-      "Truck Rental"
+      "Truck Rental",
+      "Roommate"
     ]
   },
   {
     "name": "Income",
     "vendorTypes": [
       "Employer",
-      "Relocation Reimbursement"
+      "Relocation Reimbursement",
+      "Stock Sell"
     ]
   },
   {
@@ -172,14 +179,8 @@
       "Boating",
       "Bus",
       "Amusement Park",
-      "Merchandise Shop"
-    ]
-  },
-  {
-    "name": "Unknown",
-    "vendorTypes": [
-      "ATM",
-      "UNKNOWN"
+      "Merchandise Shop",
+      "Metro"
     ]
   }
 ]

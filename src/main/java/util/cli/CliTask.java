@@ -1,25 +1,28 @@
 package util.cli;
 
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import model.CliSummary;
+import model.ParameterBatch;
 import model.TaskParameter;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
+@Getter
 public abstract class CliTask {
     String name, description;
-    List<TaskParameter> parameters;
-    public String getName() {
-        return this.name;
+    List<ParameterBatch> parameterBatches;
+
+    public CliTask() {
+        this.parameterBatches = new ArrayList<>();
     }
 
     abstract CliSummary run();
 
-    public List<TaskParameter> getParameters() {
-        return this.parameters;
-    }
-
     CliSummary validateParameters() {
-        for (TaskParameter parameter: this.parameters) {
+        for (TaskParameter parameter: this.getParameters()) {
             if (parameter.getValue() == null || parameter.getValue().isBlank()) {
                 parameter.setValueToDefault();
             }
@@ -27,7 +30,13 @@ public abstract class CliTask {
         return new CliSummary(CliSummary.Status.PASS, "Validation success");
     }
 
-    public String getDescription() {
-        return this.description;
+    public List<TaskParameter> getParameters() {
+        List<TaskParameter> result = new ArrayList<>();
+        for (ParameterBatch batch: parameterBatches) {
+            result.addAll(batch.getParameters());
+        }
+        return result;
     }
+
+
 }

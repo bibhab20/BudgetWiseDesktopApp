@@ -1,5 +1,6 @@
 package util.filter;
 
+import config.AppConstants;
 import model.Transaction;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class CategoryMatchOrFilter implements TransactionFilter{
     @Override
     public boolean pass(Transaction transaction) {
         for (String category: categories) {
-            if (transaction.getCategory().equals(category)) {
+            if (category.equals(AppConstants.ALL_PASS_FILTER) || transaction.getCategory().equals(category)) {
                 return true;
             }
         }

@@ -29,4 +29,21 @@ public class VendorTypeConfigSupplier {
 
         return result;
     }
+
+    public Map<String, List<VendorConfig>> getVendorTypeConfigs() {
+        List<VendorConfig> vendorConfigs = vendorConfigSupplier.get();
+        Map<String, List<VendorConfig>> map = new HashMap<>();
+        for (VendorConfig config: vendorConfigs) {
+            if (config.getVendorType() == null || config.getVendorType().isEmpty()) {
+                log.error("Vendor Type found empty or null : {}", config.getName());
+            }
+            List<VendorConfig> list = map.getOrDefault(config.getVendorType(), new ArrayList<>());
+            list.add(config);
+            map.put(config.getVendorType(), list);
+
+        }
+        return map;
+    }
+
+
 }

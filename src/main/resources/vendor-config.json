@@ -3,7 +3,8 @@
     "vendor": "Amazon",
     "contains": [
       "Amzn com",
-      "AMZN"
+      "AMZN",
+      "AMAZON COM"
     ],
     "notContain": [
       "AUDIBLE"
@@ -321,7 +322,9 @@
       "Prime Video",
       "PRIME VIDEO"
     ],
-    "notContain": [],
+    "notContain": [
+      "AMZN.COM"
+    ],
     "tags": [],
     "vendorType": "Channel Subscription"
   },
@@ -545,7 +548,8 @@
   {
     "vendor": "VMware",
     "contains": [
-      "VMware"
+      "VMware",
+      "VMWARE"
     ],
     "notContain": [],
     "tags": [
@@ -562,7 +566,7 @@
     "tags": [
       "Roommate"
     ],
-    "vendorType": "Friend"
+    "vendorType": "Roommate"
   },
   {
     "vendor": "Ujjwal",
@@ -745,7 +749,8 @@
   {
     "vendor": "King and Cardinal",
     "contains": [
-      "KING & CARDINAL"
+      "KING & CARDINAL",
+      "King   Cardin al"
     ],
     "notContain": [],
     "tags": [
@@ -792,7 +797,8 @@
   {
     "vendor": "Tommy's Express",
     "contains": [
-      "TOMMYS-EXPRESS.COM"
+      "TOMMYS-EXPRESS.COM",
+      "TOMMYS EXPRESS"
     ],
     "notContain": [],
     "tags": [
@@ -910,9 +916,12 @@
   {
     "vendor": "Chick Fill A",
     "contains": [
-      "CHICK-FIL-A "
+      "CHICK-FIL-A",
+      "CHICK FIL A"
     ],
-    "notContain": [],
+    "notContain": [
+      "DOORDASH"
+    ],
     "tags": [
       "Fastfood"
     ],
@@ -1166,7 +1175,8 @@
       "SANGAM"
     ],
     "notContain": [
-      "DOORDASH"
+      "DOORDASH",
+      "GRUBHUB"
     ],
     "tags": [
       "Indian"
@@ -1467,7 +1477,8 @@
   {
     "vendor": "Rock N Grill",
     "contains": [
-      "ROCK N GRI"
+      "ROCK N GRI",
+      "ROCK 'N' GRILL"
     ],
     "notContain": [
       "UBER"
@@ -1865,7 +1876,8 @@
   {
     "vendor": "McDonald",
     "contains": [
-      "MCDONALD"
+      "MCDONALD",
+      "McDonalds"
     ],
     "notContain": [
       "DOORDASH"
@@ -2217,7 +2229,9 @@
       "CASH WITHDRAWAL",
       "NON MIDFIRST ATM"
     ],
-    "notContain": [],
+    "notContain": [
+      "STOCKTON"
+    ],
     "tags": [
       "Untracked",
       "California Trip",
@@ -2278,14 +2292,15 @@
   {
     "vendor": "Summer Moon",
     "contains": [
-      "SUMMER MOON "
+      "SUMMER MOON",
+      "SM-AVERY RANCH"
     ],
     "notContain": [],
     "tags": [
       "Coffee",
       "Austin"
     ],
-    "vendorType": "Restaurant"
+    "vendorType": "Cafe"
   },
   {
     "vendor": "Arpeggio Grill",
@@ -2394,7 +2409,7 @@
     "vendorType": "Restaurant"
   },
   {
-    "vendor": "Harrison's Landing\n",
+    "vendor": "Harrison's Landing",
     "contains": [
       "HARRISON'S LANDING"
     ],
@@ -3081,7 +3096,9 @@
     "contains": [
       "IHOP"
     ],
-    "notContain": [],
+    "notContain": [
+      "DOORDASH"
+    ],
     "tags": [
       "Breakfast"
     ],
@@ -3301,5 +3318,648 @@
       "Florida Trip"
     ],
     "vendorType": "Gas Station"
+  },
+  {
+    "vendor": "Hilton NY Fashion District",
+    "contains": [
+      "HILTON NEW YORK FASHIO"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Hotel"
+  },
+  {
+    "vendor": "Damianos",
+    "contains": [
+      "DAMIANOS ITALIAN CEDAR PARK"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Big Abe Gift Shop SFO",
+    "contains": [
+      "BIG ABE GIFT SHOP "
+    ],
+    "notContain": [],
+    "tags": [
+      "California Trip"
+    ],
+    "vendorType": "Gift Shop"
+  },
+  {
+    "vendor": "Masala Dosa SFO",
+    "contains": [
+      "MASALA DOSA SAN FRANCISCOC"
+    ],
+    "notContain": [],
+    "tags": [
+      "California Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Hotel Caza SFO",
+    "contains": [
+      "HOTEL CAZA SAN FRANCISCO"
+    ],
+    "notContain": [],
+    "tags": [
+      "California Trip"
+    ],
+    "vendorType": "Hotel"
+  },
+  {
+    "vendor": "Madurai Idli Kadai Sunnyvale",
+    "contains": [
+      "MADURAI IDLI KADAI"
+    ],
+    "notContain": [],
+    "tags": [
+      "California Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Yardi Penny Test",
+    "contains": [
+      "Yardi Penny Test"
+    ],
+    "notContain": [],
+    "tags": [
+      "Suspicious"
+    ],
+    "vendorType": "Account Verification Service"
+  },
+  {
+    "vendor": "SFO Airport Food",
+    "contains": [
+      "TASTES ON THE FLY"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Rude Dawgs SD",
+    "contains": [
+      "RUDE DAWGS SAN DIEGO"
+    ],
+    "notContain": [],
+    "tags": [
+      "California Trip"
+    ],
+    "vendorType": "Food Truck"
+  },
+  {
+    "vendor": "Hampton Inn Miami",
+    "contains": [
+      "HAMPTON INN MIAMI DADELA"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Hotel"
+  },
+  {
+    "vendor": "Halal Bros",
+    "contains": [
+      "USA HALAL AUSTIN"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Unknown Apple Payment",
+    "contains": [
+      "ROUND ROCK ROUND ROCK TXAPPLE"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "UNKNOWN"
+  },
+  {
+    "vendor": "KFC Pune",
+    "contains": [
+      "KFC SAPPHIRE PUNE"
+    ],
+    "notContain": [],
+    "tags": [
+      "India Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "MTA New York",
+    "contains": [
+      "MTA*NYCT PAYGO NEW YORK"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Metro"
+  },
+  {
+    "vendor": "Outro NY",
+    "contains": [
+      "SQ *OUTRO"
+    ],
+    "notContain": [],
+    "tags": [
+      "New York Trip"
+    ],
+    "vendorType": "Cafe"
+  },
+  {
+    "vendor": "Pinecrest Bakery - West Miami",
+    "contains": [
+      "PINECREST BAKERY"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip",
+      "Birthday Cake"
+    ],
+    "vendorType": "Bakery"
+  },
+  {
+    "vendor": "Frost Gelato",
+    "contains": [
+      "FROST GELATO"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Ice-cream Shop"
+  },
+  {
+    "vendor": "Upscale Market",
+    "contains": [
+      "UPSCALE MARKET AUSTIN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Convenient Store"
+  },
+  {
+    "vendor": "Almarah",
+    "contains": [
+      "ALMARAH"
+    ],
+    "notContain": [
+      "DOORDASH"
+    ],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Everest Food Truck",
+    "contains": [
+      "Everest Food Truck"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Food Truck"
+  },
+  {
+    "vendor": "Premium Parking",
+    "contains": [
+      "PREMIUM PARKING"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Parking"
+  },
+  {
+    "vendor": "Parking in Miami",
+    "contains": [
+      "PARKONE MAYFAIR 40600000 MIAMI FL"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Parking"
+  },
+  {
+    "vendor": "Tropical News Miami Airport",
+    "contains": [
+      "TROPICALNEWSST2528"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Convenient Store"
+  },
+  {
+    "vendor": "Exxon FL",
+    "contains": [
+      "EXXONMOBIL PERRINE FL"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Gas Station"
+  },
+  {
+    "vendor": "Boucher Brothers",
+    "contains": [
+      "BOUCHER BROTHERS M MIAMI BEACH"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Food Truck"
+  },
+  {
+    "vendor": "Anurag Pradhan",
+    "contains": [
+      "ZELLE ANURAG PRAD"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Friend"
+  },
+  {
+    "vendor": "Orange Blossom Miami",
+    "contains": [
+      "ORANGE BLOSSOM"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Halal Hub",
+    "contains": [
+      "ST* HH - AUSTIN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Lali's Son",
+    "contains": [
+      "LALI SON FAST"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Lucky Dogs NOLA",
+    "contains": [
+      "LUCKY DOGS JAX SQU NEW ORLEANS"
+    ],
+    "notContain": [],
+    "tags": [
+      "New Orleans Trip"
+    ],
+    "vendorType": "Food Truck"
+  },
+  {
+    "vendor": "Toll",
+    "contains": [
+      "RMA TOLL"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Toll"
+  },
+  {
+    "vendor": "Netflix",
+    "contains": [
+      "NETFLIX.COM"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Channel Subscription"
+  },
+  {
+    "vendor": "Spring Chicken",
+    "contains": [
+      "SPRING CHI MIAMI FL"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "DJI",
+    "contains": [
+      "DJI"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Photography Gears"
+  },
+  {
+    "vendor": "Fez",
+    "contains": [
+      "FEZ MEDI"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Food Truck"
+  },
+  {
+    "vendor": "Subway Cedar Park",
+    "contains": [
+      "Subway 28443 151 22603 TX"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Let's Make a Daiquiri",
+    "contains": [
+      "LETS MAKE A DAIQUIRI-MIA"
+    ],
+    "notContain": [],
+    "tags": [
+      "Florida Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Boston Parking",
+    "contains": [
+      "LAKE SHORE VALERO LAKE CHARLES LA"
+    ],
+    "notContain": [],
+    "tags": [
+      "New England Trip"
+    ],
+    "vendorType": "Parking"
+  },
+  {
+    "vendor": "Hotels.com",
+    "contains": [
+      "HOTELS.COM"
+    ],
+    "notContain": [],
+    "tags": [
+      "Trip"
+    ],
+    "vendorType": "Hotel"
+  },
+  {
+    "vendor": "Grapeland Food Services",
+    "contains": [
+      "GRAPELAND FOOD SERVICES"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Food Delivery"
+  },
+  {
+    "vendor": "E Trade",
+    "contains": [
+      "FNU BIBHAB PATTNAY AK"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Stock Sell"
+  },
+  {
+    "vendor": "Domestic Wire",
+    "contains": [
+      "DOMESTIC WIRE - IN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Suspicious"
+    ],
+    "vendorType": "Wire"
+  },
+  {
+    "vendor": "Circle K Austin",
+    "contains": [
+      "CIRCLE K # 04675 AUSTIN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Gas Station"
+  },
+  {
+    "vendor": "Kanji Ramen",
+    "contains": [
+      "KANJI RAMEN AUSTIN TX"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Brown Derby Superstore",
+    "contains": [
+      "BROWN DERBY SUPERSTORE NEW ORLEANS LA"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Convenient Store"
+  },
+  {
+    "vendor": "F&B Austin Airport",
+    "contains": [
+      "AUSTIN AIRPORT-F&B AUSTIN TX"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "King Noodle",
+    "contains": [
+      "KING NOODLE CEDAR PARK TX"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Kwality Icecream",
+    "contains": [
+      "KWALITY ICE CREAM AUSTIN TX"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Ice-cream Shop"
+  },
+  {
+    "vendor": "Lipu",
+    "contains": [
+      "CONTAINS"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Family"
+  },
+  {
+    "vendor": "Sai Family",
+    "contains": [
+      "REMITLY INC REMITTANCE 230612"
+    ],
+    "notContain": [],
+    "tags": [
+      "Refund Expected"
+    ],
+    "vendorType": "Friend Loan"
+  },
+  {
+    "vendor": "Circle K North Conway",
+    "contains": [
+      "CIRCLE K 07237 NORTH CONWAY NH01536R"
+    ],
+    "notContain": [],
+    "tags": [
+      "New England Trip"
+    ],
+    "vendorType": "Gas Station"
+  },
+  {
+    "vendor": "Desi Brothers",
+    "contains": [
+      "DESI BROTHERS AUSTIN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Super Market"
+  },
+  {
+    "vendor": "Labcorp",
+    "contains": [
+      "LABCORP"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Medical Care"
+  },
+  {
+    "vendor": "Lucca Restaurant & Bar Boston",
+    "contains": [
+      "LUCCA RESTAURANT & BAR BOSTON MA"
+    ],
+    "notContain": [],
+    "tags": [
+      "New England Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Eat my Biscuits",
+    "contains": [
+      "EAT MY BISCUITS"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Taqueria Jessica",
+    "contains": [
+      "TAQUERIA JESSICA"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Teapioca",
+    "contains": [
+      "TEAPIOCA PARKLINE AUSTIN"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Cafe"
+  },
+  {
+    "vendor": "Ledge Brewing Intervale",
+    "contains": [
+      "LEDGE BREWING COMPA INTERVALE"
+    ],
+    "notContain": [],
+    "tags": [
+      "New England Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Stowe Cider",
+    "contains": [
+      "STOWE CIDER STOWE"
+    ],
+    "notContain": [],
+    "tags": [
+      "New England Trip"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "Veracruz",
+    "contains": [
+      "VERACRUZ"
+    ],
+    "notContain": [],
+    "tags": [
+      "Austin"
+    ],
+    "vendorType": "Restaurant"
+  },
+  {
+    "vendor": "vendorName",
+    "contains": [
+      "CONTAINS"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "vendorType"
   }
+
 ]

@@ -23,7 +23,7 @@ public class MidFirstTransactionProcessor extends TransactionProcessor {
     private static final String FOURTH_HEADER = "<Withdrawal Amount>";
     private static final String FIFTH_HEADER = "<Deposit Amount>";
     private static final String SIXTH_HEADER = "<Additional Info>";
-    private final static String DATE_FORMAT = "MM/dd/yyyy";
+    private final static String DATE_FORMAT = "MM/dd/yy";
     private final static String FOLDER_PATH_KEY = "midFirst.folder.path";
     private final static String DISCOVER_PAYMENT_TOKEN = "DISCOVER E-PAYMENT";
     private final static String INCOME_TOKEN = "VMware";
@@ -38,6 +38,11 @@ public class MidFirstTransactionProcessor extends TransactionProcessor {
     public List<Transaction> readAndProcessRecords() throws Exception {
         log.info("Starting reading Midfirst transaction files");
         List<CsvTable> tables = CsvReader.readCSVFromFolder(config.getProperties().getProperty(FOLDER_PATH_KEY));
+        int noOfCsvLines = 0;
+        for (CsvTable table: tables) {
+            noOfCsvLines += table.getRows().size();
+        }
+        log.debug("{} transactions found in all midfirst csv tables", noOfCsvLines);
 
         log.info("{} table created for midFirst.",tables.size());
 
@@ -71,7 +76,10 @@ public class MidFirstTransactionProcessor extends TransactionProcessor {
             }
         }
 
-        return convertToCommonTransactions(records);
+        log.debug("{} midfirst transaction records created", records.size());
+        List<Transaction> result = convertToCommonTransactions(records);
+        log.debug("{} midfirst transactions created", result.size());
+        return result;
 
     }
 
@@ -85,7 +93,7 @@ public class MidFirstTransactionProcessor extends TransactionProcessor {
         }
         return date;
     }
-
+    int skippedTransactionCount = 0;
     private List<Transaction> convertToCommonTransactions(List<MidFirstTransactionRecord> records) throws Exception {
         List<Transaction> transactions = new ArrayList<>();
         for (MidFirstTransactionRecord record: records) {
@@ -104,7 +112,12 @@ public class MidFirstTransactionProcessor extends TransactionProcessor {
                 }
                 transactions.add(transaction);
             }
+            else {
+                log.debug("Transaction is skipped as it's a credit card bill payment, Transaction: {}", record.toString());
+                skippedTransactionCount ++;
+            }
         }
+        log.debug("{} misfist transactions skipped", skippedTransactionCount);
         return transactions;
     }
 

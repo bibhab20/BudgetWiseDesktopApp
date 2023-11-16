@@ -57,6 +57,7 @@ public class VendorEnricher implements TransactionEnricher {
                 transaction.setVendor(vendors.get(0));
                 transaction.setVendorType(vendorConfigMap.get(vendors.get(0)).getVendorType());
                 transaction.addAdditionalDetails(config.getProperties().getProperty(VENDOR_MATCHES_HEADER_KEY), vendors.get(0));
+                transaction.getEnrichmentList().add(this.getClass().getName());
             }
         }
         log.info("{} transactions successfully enriched with vendor data",successCount);

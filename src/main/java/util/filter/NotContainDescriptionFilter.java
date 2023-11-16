@@ -1,5 +1,6 @@
 package util.filter;
 
+import config.AppConstants;
 import model.Transaction;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class NotContainDescriptionFilter implements TransactionFilter{
     @Override
     public boolean pass(Transaction transaction) {
         for (String matchString: notContains) {
-            if (transaction.getDescription().contains(matchString)) {
+            if (matchString.equals(AppConstants.ALL_PASS_FILTER) || transaction.getDescription().contains(matchString)) {
                 return false;
             }
         }
