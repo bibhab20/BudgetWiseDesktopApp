@@ -118,6 +118,24 @@ public class Transaction {
         this.vendor = vendor;
     }
 
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "transactionDate=" + transactionDate +
+                ", amount=" + amount +
+                ", type=" + type +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", source=" + source +
+                ", tags=" + tags +
+                ", id='" + id + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", vendorType='" + vendorType + '\'' +
+                ", enriched=" + enriched +
+                ", enrichmentList=" + enrichmentList +
+                '}';
+    }
+
     public static class Builder {
         private Date transactionDate;
         private double amount;

@@ -12,14 +12,14 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class DiscoverTransactionProcessorTest {
+public class DiscoverTransactionReaderTest {
 
-    DiscoverTransactionProcessor processor;
+    DiscoverTransactionReader processor;
 
     @Before
     public void setUp() {
         AppConfig config = new AppConfig("test");
-        this.processor = new DiscoverTransactionProcessor(config);
+        this.processor = new DiscoverTransactionReader(config);
     }
 
     @Test

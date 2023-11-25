@@ -28,8 +28,8 @@ public class BudgetWiseApp {
     AppConfig appConfig;
 
     //Processors
-    DiscoverTransactionProcessor discoverProcessor;
-    MidFirstTransactionProcessor midFirstProcessor;
+    DiscoverTransactionReader discoverProcessor;
+    MidFirstTransactionReader midFirstProcessor;
     VendorProcessorService vendorProcessorService;
     CategoryProcessorService categoryProcessorService;
     TransactionSummarizationService transactionSummarizationService;
@@ -83,8 +83,8 @@ public class BudgetWiseApp {
         this.appConfig = new AppConfig("Default");
 
         //processors
-        discoverProcessor = new DiscoverTransactionProcessor(appConfig);
-        midFirstProcessor = new MidFirstTransactionProcessor(appConfig);
+        discoverProcessor = new DiscoverTransactionReader(appConfig);
+        midFirstProcessor = new MidFirstTransactionReader(appConfig);
 
 
         //utils

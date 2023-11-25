@@ -131,7 +131,7 @@ public class CLIController {
             parameter.readInput(readInput());
 
         }
-        CliSummary validationSummary = taskManager.validateParameters();
+        CliSummary validationSummary = taskManager.saveParameters();
         System.out.println(CliUtils.getColoredString(String.format("Message:  %s", validationSummary.getMessage()),
                 CliUtils.ANSI_GREEN));
 
@@ -212,6 +212,9 @@ public class CLIController {
                 processParameters(batch.getParameters());
             } else {
                 System.out.println(CliUtils.getColoredString("Default values are set for all parameters", CliUtils.ANSI_GREEN));
+                for (TaskParameter parameter: batch.getParameters()) {
+                    parameter.setValueToDefault();
+                }
             }
         }
     }

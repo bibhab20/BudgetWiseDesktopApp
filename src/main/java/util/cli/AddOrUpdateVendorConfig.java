@@ -10,7 +10,6 @@ import service.VendorProcessorService;
 import util.CsvTableUtil;
 import util.TransactionUtil;
 
-import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -101,8 +100,8 @@ public class AddOrUpdateVendorConfig extends CliTask{
     }
 
     @Override
-    public CliSummary validateParameters() {
-        CliSummary superSummary = super.validateParameters();
+    public CliSummary saveParameters() {
+        CliSummary superSummary = super.saveParameters();
         if (superSummary.getStatus().equals(CliSummary.Status.FAIL)) {
             return superSummary;
         }

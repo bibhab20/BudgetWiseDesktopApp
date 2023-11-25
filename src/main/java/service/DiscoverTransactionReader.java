@@ -9,7 +9,7 @@ import util.CsvTableUtil;
 import java.util.*;
 
 @Slf4j
-public class DiscoverTransactionProcessor extends TransactionProcessor{
+public class DiscoverTransactionReader extends TransactionReader {
     private static final String FIRST_HEADER = "Trans. Date";
     private static final String SECOND_HEADER = "Post Date";
     private static final String THIRD_HEADER = "Description";
@@ -25,7 +25,7 @@ public class DiscoverTransactionProcessor extends TransactionProcessor{
 
     List<String> validHeaders = new ArrayList<>(Arrays.asList(FIRST_HEADER, SECOND_HEADER, THIRD_HEADER, FOURTH_HEADER, FIFTH_HEADER));
 
-    public DiscoverTransactionProcessor(AppConfig config) {
+    public DiscoverTransactionReader(AppConfig config) {
         this.config = config;
     }
 

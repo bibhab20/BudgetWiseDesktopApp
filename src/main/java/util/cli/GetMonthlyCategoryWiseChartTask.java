@@ -44,8 +44,8 @@ public class GetMonthlyCategoryWiseChartTask extends CliTask{
     }
 
     @Override
-    public CliSummary validateParameters() {
-        CliSummary superSummary = super.validateParameters();
+    public CliSummary saveParameters() {
+        CliSummary superSummary = super.saveParameters();
         if (superSummary.getStatus().equals(CliSummary.Status.FAIL)) {
             return superSummary;
         }

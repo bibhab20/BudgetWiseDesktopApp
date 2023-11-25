@@ -21,7 +21,7 @@ public abstract class CliTask {
 
     abstract CliSummary run();
 
-    CliSummary validateParameters() {
+    CliSummary saveParameters() {
         for (TaskParameter parameter: this.getParameters()) {
             if (parameter.getValue() == null || parameter.getValue().isBlank()) {
                 parameter.setValueToDefault();

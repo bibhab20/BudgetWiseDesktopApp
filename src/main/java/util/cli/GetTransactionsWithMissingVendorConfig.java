@@ -62,7 +62,7 @@ public class GetTransactionsWithMissingVendorConfig extends CliTask {
     }
 
     @Override
-    public CliSummary validateParameters() {
+    public CliSummary saveParameters() {
         return new CliSummary(CliSummary.Status.PASS, "No parameters present");
     }
 

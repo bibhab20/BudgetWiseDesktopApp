@@ -2,11 +2,9 @@ package util.cli;
 
 import model.*;
 import service.TransactionSummarizationService;
-import util.CsvTableUtil;
 import util.TransactionNodeUtil;
 import util.TransactionSummaryUtil;
 
-import java.io.File;
 import java.util.*;
 
 public class GetMonthlyTrend extends CliTask{
@@ -47,8 +45,8 @@ public class GetMonthlyTrend extends CliTask{
     }
 
     @Override
-    public CliSummary validateParameters() {
-        CliSummary superSummary = super.validateParameters();
+    public CliSummary saveParameters() {
+        CliSummary superSummary = super.saveParameters();
         if (superSummary.getStatus().equals(CliSummary.Status.FAIL)) {
             return superSummary;
         }

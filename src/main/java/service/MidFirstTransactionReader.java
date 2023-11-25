@@ -15,7 +15,7 @@ import static model.TransactionType.CREDIT;
 import static model.TransactionType.DEBIT;
 
 @Slf4j
-public class MidFirstTransactionProcessor extends TransactionProcessor {
+public class MidFirstTransactionReader extends TransactionReader {
 
     private static final String FIRST_HEADER = "<Date>";
     private static final String SECOND_HEADER = "<CheckNum>";
@@ -31,7 +31,7 @@ public class MidFirstTransactionProcessor extends TransactionProcessor {
     private final List<String> validHeaders = new ArrayList<>(Arrays.asList(FIRST_HEADER, SECOND_HEADER, THIRD_HEADER, FOURTH_HEADER, FIFTH_HEADER, SIXTH_HEADER));
     private final AppConfig config;
 
-    public MidFirstTransactionProcessor(AppConfig config) {
+    public MidFirstTransactionReader(AppConfig config) {
         this.config = config;
     }
 

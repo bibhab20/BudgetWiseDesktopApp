@@ -4,6 +4,7 @@ import config.AppConstants;
 import config.CategoryConfigSupplier;
 import config.VendorConfigSupplier;
 import config.VendorTypeConfigSupplier;
+import lombok.extern.slf4j.Slf4j;
 import model.*;
 import util.CsvTableUtil;
 import util.TransactionUtil;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 public class GenericTransactionQueryTask extends CliTask{
     List<TaskParameter> filterParameters;
     List<TaskParameter> highlightParameters;
@@ -48,6 +50,7 @@ public class GenericTransactionQueryTask extends CliTask{
 
     @Override
     CliSummary run() {
+        log.info("Category input: {}", category);
         AdvanceFilter filter = new AdvanceFilter.Builder()
                 .addFilter(new AfterDateFilter(startDate))
                 .addFilter(new BeforeDateFilter(endDate))
@@ -94,8 +97,8 @@ public class GenericTransactionQueryTask extends CliTask{
     }
 
     @Override
-    public CliSummary validateParameters(){
-        CliSummary superSummary = super.validateParameters();
+    public CliSummary saveParameters(){
+        CliSummary superSummary = super.saveParameters();
         if (superSummary.getStatus().equals(CliSummary.Status.FAIL)) {
             return superSummary;
         }
@@ -109,7 +112,7 @@ public class GenericTransactionQueryTask extends CliTask{
         this.descriptionString = filterParameters.get(5).getValue();
         this.source = getSource(filterParameters.get(6).getValue());
         this.type = getType(filterParameters.get(7).getValue());
-
+        log.info("Category input: {}", category);
         //highlights
         this.highlightCategory = highlightParameters.get(0).getValue();
         this.highlightVendorType = highlightParameters.get(1).getValue();

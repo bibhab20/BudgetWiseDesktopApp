@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class TransactionProcessor {
+public abstract class TransactionReader {
 
     public abstract List<Transaction> readAndProcessRecords() throws Exception;
     Date convertStringToDate(String dateString, String dateFormat){

@@ -1,6 +1,5 @@
 package util.cli;
 
-import config.VendorConfig;
 import config.VendorConfigSupplier;
 import lombok.extern.slf4j.Slf4j;
 import model.*;
@@ -82,8 +81,8 @@ public class GetVendorTransactionSummaryTask extends CliTask {
 
 
     @Override
-    public CliSummary validateParameters() {
-        CliSummary superSummary = super.validateParameters();
+    public CliSummary saveParameters() {
+        CliSummary superSummary = super.saveParameters();
         if (superSummary.getStatus().equals(CliSummary.Status.FAIL)) {
             return superSummary;
         }

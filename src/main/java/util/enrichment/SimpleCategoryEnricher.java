@@ -36,11 +36,12 @@ public class SimpleCategoryEnricher implements TransactionEnricher{
         for (Transaction transaction: transactions) {
             List<String> matches = getMatches(transaction);
             if (matches.size() == 0) {
-                log.warn("No match found for transaction with id: {}", transaction.getId());
+                log.error("No match found for transaction with {} with vendor: {} and vendorType: {}",
+                        transaction.toString(), transaction.getVendor(), transaction.getVendorType());
                 transaction.setCategory("UNKNOWN");
                 unknownCount++;
             } else if (matches.size() > 1) {
-                log.error("Multiple category matches the transaction with id: {} and the matches are {}", transaction.getId(), matches);
+                log.error("Multiple category matches the transaction: {} and the matches are {}", transaction.toString(), matches);
                 transaction.setCategory("ERROR");
                 transaction.addAdditionalDetails("Category matches", toCommaDelimitedString(matches));
                 errorCount++;

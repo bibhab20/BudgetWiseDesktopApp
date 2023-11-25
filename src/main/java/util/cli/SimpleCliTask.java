@@ -40,7 +40,7 @@ public class SimpleCliTask extends CliTask {
 
 
     @Override
-    public CliSummary validateParameters() {
+    public CliSummary saveParameters() {
         return null;
     }
 

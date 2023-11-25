@@ -194,7 +194,9 @@
     "contains": [
       "REMITLY"
     ],
-    "notContain": [],
+    "notContain": [
+      "230612"
+    ],
     "tags": [],
     "vendorType": "International Money Transfer"
   },

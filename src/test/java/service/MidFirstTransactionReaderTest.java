@@ -12,14 +12,14 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class MidFirstTransactionProcessorTest {
+public class MidFirstTransactionReaderTest {
 
-    MidFirstTransactionProcessor processor;
+    MidFirstTransactionReader processor;
 
     @Before
     public void setUp() {
         AppConfig config = new AppConfig("test");
-        this.processor = new MidFirstTransactionProcessor(config);
+        this.processor = new MidFirstTransactionReader(config);
     }
 
     @Test

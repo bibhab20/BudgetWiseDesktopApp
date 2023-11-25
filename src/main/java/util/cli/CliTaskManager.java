@@ -42,8 +42,8 @@ public class CliTaskManager {
     }
 
 
-    public CliSummary validateParameters() {
-        return this.currentTask.validateParameters();
+    public CliSummary saveParameters() {
+        return this.currentTask.saveParameters();
     }
 
     public CliSummary runCurrentTask() {
