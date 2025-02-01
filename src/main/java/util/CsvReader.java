@@ -61,7 +61,7 @@ public class CsvReader {
                 data.add(row);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error while reading csv file {}", filePath, e);
         }
         CsvTable table = new CsvTable();
         table.setHeaders(data.remove(0));

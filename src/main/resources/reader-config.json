@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "headers": [
+    "header1",
+    "header2"
+  ],
+  "columnMapping": {
+    "header1": "TransactionId"
+  },
+  "hardMapping": {
+    "TransactionSource": "Chase"
+  }
+}

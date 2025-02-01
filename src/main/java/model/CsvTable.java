@@ -10,19 +10,13 @@ import java.util.List;
 import java.util.Set;
 
 
+@Getter
 @Slf4j
 public class CsvTable {
+    @Setter
     List<String> headers = new ArrayList<>();
     List<List<String>> rows = new ArrayList<>();
-    @Getter
     MetaData metaData = new MetaData();
-
-    public void setHeaders(List<String> headers){
-        this.headers = headers;
-    }
-    public List<String> getHeaders() {
-        return this.headers;
-    }
 
     public void addRow(List<String> row) throws Exception {
         if (row.size() != headers.size()){
@@ -39,13 +33,9 @@ public class CsvTable {
     }
 
 
-    public List<List<String>> getRows() {
-        return this.rows;
-    }
-
     @Getter
     @Setter
-    public class MetaData {
+    public static class MetaData {
         String headerColor;
         String highlightColor;
         Set<Integer> highlightLineIndices;

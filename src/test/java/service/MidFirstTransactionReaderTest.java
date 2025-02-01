@@ -5,6 +5,7 @@ import model.TransactionSource;
 import model.TransactionType;
 import org.junit.Before;
 import org.junit.Test;
+import service.reader.MidFirstTransactionReader;
 import util.AppConfig;
 
 import java.text.SimpleDateFormat;

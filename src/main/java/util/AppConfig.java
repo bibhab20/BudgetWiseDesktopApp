@@ -9,7 +9,7 @@ import java.util.Properties;
 @Slf4j
 public class AppConfig {
 
-    private Properties properties = new Properties();
+    private final Properties properties = new Properties();
 
 
     public AppConfig(String activeProfile) {

@@ -44,7 +44,7 @@ public class GetVendorTransactionSummaryTask extends CliTask {
         //new parameter object
         this.parameters = new ArrayList<>();
         parameters.add(new TaskParameter(START_DATE, "1/1/2022"));
-        parameters.add(new TaskParameter(END_DATE, "1/5/2022"));
+        parameters.add(new TaskParameter(END_DATE, "1/1/2025"));
         List<String> vendorNames = vendorConfigSupplier.getNames();
         vendorNames.sort((String::compareTo));
         parameters.add(new TaskParameter(VENDOR_NAME, "Uber", vendorNames));

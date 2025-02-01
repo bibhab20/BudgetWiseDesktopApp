@@ -37,7 +37,8 @@ public class VendorConfigSupplier {
         File jsonFile = new File(config.getProperties().getProperty(VENDOR_CONFIG_JSON_PATH));
         List<VendorConfig> vendorConfigs = null;
         try {
-            vendorConfigs = objectMapper.readValue(jsonFile, new TypeReference<List<VendorConfig>>() {});
+            vendorConfigs = objectMapper.readValue(jsonFile, new TypeReference<>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

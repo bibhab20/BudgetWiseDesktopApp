@@ -6,10 +6,14 @@ import controller.CLIController;
 import controller.CsvOutController;
 import controller.JsonOutController;
 import controller.VendorController;
+import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.XSlf4j;
 import model.Transaction;
 import model.TransactionRepository;
 import service.*;
+import service.reader.DiscoverTransactionReader;
+import service.reader.MidFirstTransactionReader;
 import util.AppConfig;
 import util.CsvWriter;
 import util.TransactionUtil;
@@ -148,7 +152,6 @@ public class BudgetWiseApp {
         vendorController = new VendorController(vendorTypeConfigSupplier, appConfig, writer);
         jsonOutController = new JsonOutController(repository, appConfig);
         cliController = new CLIController(appConfig, taskManager);
-        int[] arr = new int[2];
 
 
     }

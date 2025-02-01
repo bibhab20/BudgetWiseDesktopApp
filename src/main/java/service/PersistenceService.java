@@ -25,9 +25,7 @@ public class PersistenceService {
         }
         Map<String, List<Transaction>> result = new HashMap<>();
         for (String hashKey: map.keySet()) {
-            System.out.println(hashKey);
             if (map.get(hashKey).size() > 1) {
-                System.out.println("Found it: " +hashKey);
                 result.put(hashKey, map.get(hashKey));
             }
         }

@@ -3955,6 +3955,43 @@
     "vendorType": "Restaurant"
   },
   {
+    "vendor": "Boston Airport",
+    "contains": [
+      "HUDSON ST1892 BOSTON MA"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Convenient Store"
+  },
+  {
+    "vendor": "85 Degrees",
+    "contains": [
+      "85 C BAKERY CAFE USA"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Cafe"
+  },
+  {
+    "vendor": "ASU Employment",
+    "contains": [
+      "ARIZONA STATE UN DIR DEP",
+      "ASU"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Part-time job"
+  },
+  {
+    "vendor": "Midfirst ATM",
+    "contains": [
+      "ATM"
+    ],
+    "notContain": [],
+    "tags": [],
+    "vendorType": "Bank"
+  },
+  {
     "vendor": "vendorName",
     "contains": [
       "CONTAINS"

@@ -40,7 +40,7 @@ public class VendorEnricher implements TransactionEnricher {
         for (Transaction transaction: transactions) {
             List<String> vendors = getMatches(transaction);
             if (vendors.size() == 0) {
-                log.warn("No match found for transaction with id: {}", transaction.getId());
+                log.warn("No match found for transaction : {}", transaction);
                 transaction.setVendor("UNKNOWN");
                 transaction.setVendorType("UNKNOWN");
                 transaction.addAdditionalDetails(config.getProperties().getProperty(VENDOR_MATCHES_HEADER_KEY), "NONE");

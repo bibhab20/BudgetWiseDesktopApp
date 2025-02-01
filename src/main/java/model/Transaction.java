@@ -5,32 +5,35 @@ import lombok.Setter;
 
 import java.util.*;
 
+@Getter
 public class Transaction {
+    @Setter
     private Date transactionDate;
+    @Setter
     private double amount;
+    @Setter
     private TransactionType type;
+    @Setter
     private String description;
-    @Getter
     @Setter
     private String category;
+    @Setter
     private Map<String, String> additionalDetails;
+    @Setter
     private TransactionSource source;
     private Set<Tag> tags;
 
-    @Getter
     @Setter
     private String id;
+    @Setter
     private String vendor;
 
-    @Getter
     @Setter
     private String vendorType;
 
-    @Getter
     @Setter
     private boolean enriched;
 
-    @Getter
     @Setter
     private List<String> enrichmentList;
 
@@ -46,76 +49,12 @@ public class Transaction {
         this.enrichmentList = new ArrayList<>();
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public Date getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setTransactionDate(Date transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public TransactionType getType() {
-        return type;
-    }
-
-    public void setType(TransactionType type) {
-        this.type = type;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Map<String, String> getAdditionalDetails() {
-        return additionalDetails;
-    }
-
-    public void setAdditionalDetails(Map<String, String> additionalDetails) {
-        this.additionalDetails = additionalDetails;
-    }
-
     public void addAdditionalDetails(String key, String value) {
         this.additionalDetails.put(key, value);
     }
 
-    public TransactionSource getSource() {
-        return source;
-    }
-
-    public void setSource(TransactionSource source) {
-        this.source = source;
-    }
-
-    public Set<Tag> getTags() {
-        return tags;
-    }
-
     public void addTag(Tag tag) {
         this.tags.add(tag);
-    }
-
-    public String getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(String vendor) {
-        this.vendor = vendor;
     }
 
     @Override
